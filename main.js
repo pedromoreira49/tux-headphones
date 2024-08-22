@@ -72,8 +72,6 @@ app.whenReady().then(async () => {
         await selectDefaultAudioDevice(device.name)
       }
     }))
-
-    console.log(devices);
     const contextMenu = Menu.buildFromTemplate(menuItems);
 
     tray.setContextMenu(contextMenu);
