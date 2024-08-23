@@ -1,4 +1,4 @@
-import { app, Tray, Menu, nativeImage } from 'electron';
+import { app, Tray, Menu, nativeImage, nativeTheme } from 'electron';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { exec } from 'child_process';
@@ -54,9 +54,23 @@ function selectDefaultAudioDevice(device) {
 }
 
 app.whenReady().then(async () => {
-  const image = path.join(__dirname, 'public', 'images', 'icon.png')
+
+  const updateTrayIcon = () => {
+    const iconName = nativeTheme.shouldUseDarkColors ? 'icon-light.png' : 'icon-dark.png';
+    const iconPath = path.join(__dirname, 'public', 'images', 'Tray', iconName);
+    const icon = nativeImage.createFromPath(iconPath);
+    tray.setImage(icon);
+  }
+
+  const image = path.join(__dirname, 'public', 'images', 'Tray', 'icon-light.png')
   const icon = nativeImage.createFromPath(image);
   tray = new Tray(icon);
+
+  updateTrayIcon();
+
+  nativeTheme.on('updated', () => {
+    updateTrayIcon();
+  })
 
   tray.setTitle('Tux Headphones');
 
