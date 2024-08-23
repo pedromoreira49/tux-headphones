@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "dev": "electron main.js",
     "start": "electron-forge start",
     "make": "electron-forge make",
     "package": "electron-forge package"
@@ -17,7 +18,10 @@
             "darwin"
           ],
           "config": {
-            "maintainer": "Pedro Moreira"
+            "maintainer": "Pedro Moreira",
+            "options": {
+              "icon": "./public/images/Desktop/icon.png"
+            }
           }
         },
         {
@@ -26,7 +30,10 @@
             "linux"
           ],
           "config": {
-            "maintainer": "Pedro Moreira"
+            "maintainer": "Pedro Moreira",
+            "options": {
+              "icon": "./public/images/Desktop/icon.png"
+            }
           }
         }
       ]
